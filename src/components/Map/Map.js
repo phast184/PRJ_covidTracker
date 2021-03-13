@@ -1,6 +1,6 @@
 import React from "react";
 import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
-import { useGlobalContext } from "../../context/context";
+import { useGlobalContext } from "../../context/globalContext";
 import "./Map.css";
 import { drawCircle } from "../../utils/helpers";
 import ChangeView from './ChangeView'

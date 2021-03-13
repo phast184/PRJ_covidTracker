@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
-import { useGlobalContext } from "../context/context";
+import { useGlobalContext } from "../context/globalContext";
 import { casesTypeColors } from "../utils/helpers";
 import "./LineGraph.css";
 
@@ -51,7 +51,7 @@ const options = {
 };
 
 function LineGraph() {
-  const { historicalCountry, caseType, countryInput } = useGlobalContext();
+  const { historicalCountry, caseType } = useGlobalContext();
   return (
     <div className="graph">
       

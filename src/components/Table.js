@@ -1,7 +1,7 @@
 import React from 'react'
 import './Table.css'
 import numeral from 'numeral'
-import {useGlobalContext} from '../context/context'
+import {useGlobalContext} from '../context/globalContext'
 import {sortData} from '../utils/helpers'
 function Table() {
     const {countries, typeInput} = useGlobalContext();
