@@ -16,7 +16,7 @@ import {
   LOAD_HISTORICAL_COUNTRY,
   SET_CASE_TYPE,
   SET_TYPE_INPUT,
-} from "./globalActions";
+} from "../actions/globalActions";
 
 const initialState = {
   all: [],
@@ -43,7 +43,7 @@ const initialState = {
   typeInput: "cases",
 };
 const GlobalContext = React.createContext();
-export const ContextProvider = ({ children }) => {
+export const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   /**fetch data of all countries */
   const fetchCountries = async () => {

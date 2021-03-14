@@ -55,8 +55,7 @@ body {
 }
 .app__right__header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction:column;
 }
 #title_header{
   display: flex;

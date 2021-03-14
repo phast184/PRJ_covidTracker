@@ -7,7 +7,6 @@ import ChangeView from './ChangeView'
 
 function Map() {
   const { mapCenter, mapZoom, countries, caseType } = useGlobalContext();
-  console.log(countries)
 
   return (
     <div className="map">
