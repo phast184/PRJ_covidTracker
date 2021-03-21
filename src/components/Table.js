@@ -6,7 +6,7 @@ import { useCanadaContext } from '../context/canadaContext'
 import { sortDataCountries, sortDataProvinces } from '../utils/helpers'
 function Table(props) {
     let tempData = [...props.data];
-    tempData > 100 ? tempData = sortDataCountries(tempData, props.typeInput) : tempData = sortDataProvinces(tempData, props.typeInput);
+    tempData.length > 100 ? tempData = sortDataCountries(tempData, props.typeInput) : tempData = sortDataProvinces(tempData, props.typeInput);
     return (
         <div className='table'>
             {

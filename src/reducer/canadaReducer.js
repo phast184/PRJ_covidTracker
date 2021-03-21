@@ -28,6 +28,13 @@ const reducer = (state, action) => {
           typeInput: action.payload
         }
       }
+    
+    if (action.type === SET_PROVINCE_INPUT){
+      return{
+        ...state,
+        provinceInput: action.payload
+      }
+    }
 
     return state;
     

@@ -31,6 +31,8 @@ function CanadaCovidPage() {
   const {
     provinces,
     canada,
+    provinceInput,
+    setProvinceInput,
     typeInput,
     typeInputData,
     setTypeInput,
@@ -46,16 +48,16 @@ function CanadaCovidPage() {
             <FormControl className="app_dropDown">
               <Select
                 variant="outlined"
-                value={countryInput}
-                onChange={(e) => setCountryInput(e)}
+                value={provinceInput}
+                onChange={(e) => setProvinceInput(e)}
               >
-                <MenuItem value="worldwide" selected="selected">
-                  Worldwide
+                <MenuItem value="Canada" selected="selected">
+                  Canada
                 </MenuItem>
-                {countries.map((country, index) => {
+                {provinces.map((p, index) => {
                   return (
-                    <MenuItem value={country.countryInfo.iso2} key={index}>
-                      {country.country}
+                    <MenuItem value={p.province} key={index}>
+                      {p.province}
                     </MenuItem>
                   );
                 })}

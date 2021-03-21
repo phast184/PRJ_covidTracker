@@ -15,6 +15,7 @@ const initialState = {
   provinces: [],
   canada: [],
   caseType: "cases",
+  provinceInput: "Canada",
   typeInput: "confirmed",
   typeInputData: [
     { type: "confirmed", name: "Confirmed Cases" },
@@ -49,6 +50,13 @@ export const CanadaContextProvider = ({ children }) => {
     dispatch({ type: SET_TYPE_INPUT, payload: e.target.value });
   };
 
+  /**Set province input for dropdown menu */
+
+  const setProvinceInput = (e) => {
+    dispatch({type: SET_PROVINCE_INPUT, payload: e.target.value})
+  }
+
+
   console.log(state.provinces);
   useEffect(() => {
     fetchCanada();
@@ -56,7 +64,7 @@ export const CanadaContextProvider = ({ children }) => {
   }, []);
   return (
     //to pass the state from the context Provider
-    <CanadaContext.Provider value={{ ...state, setTypeInput }}>
+    <CanadaContext.Provider value={{ ...state, setTypeInput, setProvinceInput }}>
       {children}
     </CanadaContext.Provider>
   );
