@@ -15,10 +15,10 @@ const initialState = {
   provinces: [],
   canada: [],
   caseType: "cases",
-  typeInput: "cases",
+  typeInput: "confirmed",
   typeInputData: [
-    { type: "cases", name: "Cases" },
-    { type: "active", name: "Active Cases" },
+    { type: "confirmed", name: "Confirmed Cases" },
+    { type: "deaths", name: "Deaths" },
     { type: "recovered", name: "Recovered" },
   ],
 };
@@ -37,7 +37,7 @@ export const CanadaContextProvider = ({ children }) => {
   };
   //**fetch data of all provinces in Canada */
   const fetchProvinces = async () => {
-    let url = "https://disease.sh/v3/covid-19/historical?lastdays=2";
+    let url = "https://disease.sh/v3/covid-19/jhucsse";
     let data = await fetchThings(url);
     data = data.filter((a) => a.country === "Canada");
     dispatch({ type: LOAD_ALL_PROVINCES_DATA, payload: data });

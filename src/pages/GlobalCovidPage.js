@@ -29,7 +29,7 @@ function App() {
     typeInput,
     setTypeInput,
   } = useGlobalContext();
-
+  console.log(countries)
   console.log(typeInput);
   return (
     <div className="app">
@@ -106,7 +106,7 @@ function App() {
                   </Select>
                 </FormControl>
               </div>
-              <Table></Table>
+              <Table data = {countries} typeInput = {typeInput}></Table>
               <h4 className="graph-header">{countryInput} line graph</h4>
               <LineGraph />
             </div>

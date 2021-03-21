@@ -112,7 +112,7 @@ function CanadaCovidPage() {
                   </Select>
                 </FormControl>
               </div>
-              <Table></Table>
+              <Table data = {provinces} typeInput = {typeInput}></Table>
               <h4 className="graph-header">{countryInput} line graph</h4>
               <LineGraph />
             </div>
