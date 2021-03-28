@@ -5,53 +5,56 @@ import { useGlobalContext } from "../context/context";
 import { casesTypeColors } from "../utils/helpers";
 import "./LineGraph.css";
 
-const options = {
-  legend: {
-    display: false,
-  },
-  elements: {
-    point: {
-      radius: 0,
+function LineGraph( { theme }) {
+  const { historicalCountry, caseType, countryInput } = useGlobalContext();
+  const options = {
+    legend: {
+      display: false,
     },
-  },
-  maintainAspectRatio: false,
-  tooltips: {
-    mode: "index",
-    intersect: false,
-    callbacks: {
-      label: function (tooltipItem, data) {
-        return numeral(tooltipItem.value).format("+0,0");
+    elements: {
+      point: {
+        radius: 0,
       },
     },
-  },
-  scales: {
-    xAxes: [
-      {
-        type: "time",
-        time: {
-          format: "MM/DD/YY",
-          tooltipFormat: "ll",
+    maintainAspectRatio: false,
+    tooltips: {
+      mode: "index",
+      intersect: false,
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return numeral(tooltipItem.value).format("+0,0");
         },
       },
-    ],
-    yAxes: [
-      {
-        gridLines: {
-          display: false,
+    },
+    scales: {
+      xAxes: [
+        {
+          type: "time",
+          time: {
+            format: "MM/DD/YY",
+            tooltipFormat: "ll",
+          },
+          ticks: {
+            fontColor: theme === 'dark' ? "white" : "black"
+          }
         },
-        ticks: {
-          // Include a dollar sign in the ticks
-          callback: function (value, index, values) {
-            return numeral(value).format("0a");
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value, index, values) {
+              return numeral(value).format("0a");
+            },
+            fontColor: theme === 'dark' ? "white" : "black"
           },
         },
-      },
-    ],
-  },
-};
-
-function LineGraph() {
-  const { historicalCountry, caseType, countryInput } = useGlobalContext();
+      ],
+    },
+  };
   return (
     <div className="graph">
       
@@ -61,7 +64,7 @@ function LineGraph() {
             datasets: [
               {
                 backgroundColor: `${casesTypeColors[caseType].half_op}`,
-                borderColor: `${casesTypeColors[caseType].hex}`,
+                borderColor: theme === 'dark' ? 'white' : 'black',
                 data: historicalCountry,
               },
             ],

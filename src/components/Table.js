@@ -3,12 +3,11 @@ import './Table.css'
 import numeral from 'numeral'
 import {useGlobalContext} from '../context/context'
 import {sortData} from '../utils/helpers'
-function Table() {
+function Table({ theme }) {
     const {countries, typeInput} = useGlobalContext();
     let tempCountries = [...countries];
     tempCountries = sortData(tempCountries, typeInput)
-    console.log(tempCountries)
-
+    console.log(theme)
     return (
         <div className = 'table'>
             {tempCountries.map(country => {
