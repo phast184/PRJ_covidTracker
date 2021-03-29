@@ -17,7 +17,8 @@ body {
 }
 
 .app__left {
-  flex: 0.9;
+  flex: 0.95;
+  padding: 5px
 }
 /*app header styles*/
 .app__header {
@@ -42,6 +43,9 @@ body {
 .app__stat {
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
+  height: 12em;
+  
 }
 
 /*app__right*/
@@ -73,9 +77,6 @@ body {
     flex-direction: column;
   }
 
-  .app__left {
-    padding-bottom: 20px;
-  }
 }
 @media (max-width: 400px) {
   .app__stat {

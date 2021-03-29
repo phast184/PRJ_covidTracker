@@ -70,6 +70,41 @@ function App() {
       <>
         <GlobalStyle />
         <div className="app">
+
+        <Card className="app__right">
+            <CardContent>
+              <div className="app__information">
+                <div className="app__right__header">
+                  <div id="title_header">
+                    <h4>Live Stats By Country</h4>
+                    <p className="title note">
+                      *Select to see data on <br /> different case type
+                    </p>
+                  </div>
+                  <FormControl className="app_dropDown">
+                    <Select
+                      variant="outlined"
+                      value={typeInput}
+                      onChange={(e) => setTypeInput(e)} 
+                      id="select-dropDown"
+                    >
+                      {typeInputData.map((typeInput, index) => {
+                        return (
+                          <MenuItem value={typeInput.type} key={index}>
+                            {typeInput.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </div>
+                <Table theme={theme.mode}></Table>
+                <h4 className="graph-header">{countryInput} line graph</h4>
+                <LineGraph theme={theme.mode} />
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="app__left">
             <div className="app__header">
               <h1>COVID-19 Safety Map&nbsp;<FaLightbulb className="fa-lightbulb" onClick={e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})}></FaLightbulb>
@@ -102,6 +137,7 @@ function App() {
                 </Select>
               </FormControl>
             </div>
+            <Map />
             <p className="note">
               *Click on one of the three tags below to see the data of different
               case type.
@@ -137,42 +173,9 @@ function App() {
                 theme={theme.mode}
               />
             </div>
-            <Map />
           </div>
 
-          <Card className="app__right">
-            <CardContent>
-              <div className="app__information">
-                <div className="app__right__header">
-                  <div id="title_header">
-                    <h4>Live Stats By Country</h4>
-                    <p className="title note">
-                      *Select to see data on <br /> different case type
-                    </p>
-                  </div>
-                  <FormControl className="app_dropDown">
-                    <Select
-                      variant="outlined"
-                      value={typeInput}
-                      onChange={(e) => setTypeInput(e)} 
-                      id="select-dropDown"
-                    >
-                      {typeInputData.map((typeInput, index) => {
-                        return (
-                          <MenuItem value={typeInput.type} key={index}>
-                            {typeInput.name}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </div>
-                <Table theme={theme.mode}></Table>
-                <h4 className="graph-header">{countryInput} line graph</h4>
-                <LineGraph theme={theme.mode} />
-              </div>
-            </CardContent>
-          </Card>
+          
         </div>
       </>
     </ThemeProvider>
