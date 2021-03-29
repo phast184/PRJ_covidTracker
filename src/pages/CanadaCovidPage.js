@@ -104,6 +104,7 @@ function CanadaCovidPage() {
               </Select>
             </FormControl>
           </div>
+          <Map />
           <div className="app__stat">
             <InfoBox
               title="Coronavirus Cases"
@@ -132,7 +133,7 @@ function CanadaCovidPage() {
               theme={theme.mode}
             />
           </div>
-          <Map />
+          
         </div>
         <Card className="app__right">
           <CardContent>

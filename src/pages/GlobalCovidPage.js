@@ -96,6 +96,7 @@ function App() {
               </Select>
             </FormControl>
           </div>
+          <Map />
           <div className="app__stat">
             <InfoBox
               title="Today Coronavirus Cases"
@@ -124,7 +125,6 @@ function App() {
               theme={theme.mode}
             />
           </div>
-          <Map />
         </div>
         <Card className="app__right">
           <CardContent>
