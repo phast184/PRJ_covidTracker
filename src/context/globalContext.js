@@ -6,7 +6,7 @@
  */
 
 import React, { useContext, useEffect, useReducer } from "react";
-import reducer from "../reducer/reducer";
+import reducer from "../reducer/globalReducer";
 import { fetchThings, buildChartData } from "../utils/helpers";
 import {
   LOAD_DATA_COUNTRIES,
@@ -16,7 +16,7 @@ import {
   LOAD_HISTORICAL_COUNTRY,
   SET_CASE_TYPE,
   SET_TYPE_INPUT,
-} from "./actions";
+} from "../actions/globalActions";
 
 const initialState = {
   all: [],
@@ -43,7 +43,7 @@ const initialState = {
   typeInput: "cases",
 };
 const GlobalContext = React.createContext();
-export const ContextProvider = ({ children }) => {
+export const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   /**fetch data of all countries */
   const fetchCountries = async () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
-import { useGlobalContext } from "../../context/context";
+import { useGlobalContext } from "../../context/globalContext";
 import "./Map.css";
 import { drawCircle } from "../../utils/helpers";
 import ChangeView from './ChangeView'
@@ -9,7 +9,6 @@ import ChangeView from './ChangeView'
 
 function Map() {
   const { mapCenter, mapZoom, countries, caseType } = useGlobalContext();
-  console.log(countries)
 
   function maxCases(){
     return Math.max.apply(Math, countries.map(function(country) { return country.cases; }))

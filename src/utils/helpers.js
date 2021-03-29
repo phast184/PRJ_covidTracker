@@ -89,6 +89,11 @@ export const drawCircle = (data, casesType, maxCases) =>
   ));
 
   
-export const sortData = (data, type) => {
+export const sortDataCountries = (data, type) => {
   return data.sort((a,b) => b[type] - a[type])
+}
+
+
+export const sortDataProvinces = (data, type) => {
+  return data.sort((a,b) => b.stats[type] - a.stats[type])
 }

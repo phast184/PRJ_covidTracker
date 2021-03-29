@@ -8,17 +8,22 @@ body {
   overflow:hidden;
 }
 
+.container{
+  display: flex;
+  flex-direction: row;
+  padding: 20px 10px;
+  justify-content: space-between;
+}
+
 .app {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   background-color: #f5f6fa;
-  padding: 20px;
   min-height: calc(100vh - 40px);
 }
 
 .app__left {
-  flex: 0.95;
-  padding: 5px
+  flex: 0.9;
 }
 /*app header styles*/
 .app__header {
@@ -33,10 +38,7 @@ body {
   font-size: 2rem;
 }
 
-.note{
-  font-style: italic;
-  margin: 10px 0;
-}
+
 
 /*app__stat styles*/
 
@@ -58,8 +60,7 @@ body {
 }
 .app__right__header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction:column;
 }
 #title_header{
   display: flex;
@@ -72,7 +73,7 @@ body {
   text-transform: capitalize;
 }
 @media (max-width: 900px) {
-  .app {
+  .container {
     display: flex;
     flex-direction: column;
   }

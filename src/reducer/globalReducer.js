@@ -7,7 +7,7 @@ import {
   LOAD_HISTORICAL_COUNTRY,
   SET_CASE_TYPE,
   SET_TYPE_INPUT,
-} from "../context/actions";
+} from "../actions/globalActions";
 const reducer = (state, action) => {
   if (action.type === LOAD_DATA_COUNTRIES) {
     return {

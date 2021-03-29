@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
-import { useGlobalContext } from "../context/context";
+import { useGlobalContext } from "../context/globalContext";
 import { casesTypeColors } from "../utils/helpers";
 import "./LineGraph.css";
 
@@ -51,8 +51,7 @@ function LineGraph( { theme }) {
             },
             fontColor: theme === 'dark' ? "white" : "black"
           },
-        },
-      ],
+        },],
     },
   };
   return (
