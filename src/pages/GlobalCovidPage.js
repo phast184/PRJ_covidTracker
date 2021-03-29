@@ -22,6 +22,7 @@ function App() {
     country,
     countries,
     countryInput,
+    historicalCountry,
     setCountryInput,
     setCaseType,
     caseType,
@@ -29,8 +30,8 @@ function App() {
     typeInput,
     setTypeInput,
   } = useGlobalContext();
-  console.log(countries)
-  console.log(typeInput);
+
+  console.log(caseType)
   return (
     <div className="app">
       <Navbar />
@@ -107,8 +108,8 @@ function App() {
                 </FormControl>
               </div>
               <Table data = {countries} typeInput = {typeInput}></Table>
-              <h4 className="graph-header">{countryInput} line graph</h4>
-              <LineGraph />
+              <h4 className="graph-header"  >{countryInput} line graph</h4>
+              <LineGraph dataChart = {historicalCountry} caseType = {caseType}/>
             </div>
           </CardContent>
         </Card>
