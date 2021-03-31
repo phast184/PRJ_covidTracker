@@ -5,8 +5,14 @@ import "./Map.css";
 import { drawCircle } from "../../utils/helpers";
 import ChangeView from './ChangeView'
 
+
+
 function Map() {
   const { mapCenter, mapZoom, countries, caseType } = useGlobalContext();
+
+  function maxCases(){
+    return Math.max.apply(Math, countries.map(function(country) { return country.cases; }))
+  }
 
   return (
     <div className="map">
@@ -17,7 +23,7 @@ function Map() {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         >
         </TileLayer>
-        {drawCircle(countries, caseType)}
+        {drawCircle(countries, caseType, maxCases())}
       </LeafletMap>
     </div>
   );
