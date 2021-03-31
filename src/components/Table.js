@@ -1,6 +1,7 @@
 import React from 'react'
 import './Table.css'
 import numeral from 'numeral'
+
 import { useGlobalContext } from '../context/globalContext'
 import { useCanadaContext } from '../context/canadaContext'
 import { sortDataCountries, sortDataProvinces } from '../utils/helpers'

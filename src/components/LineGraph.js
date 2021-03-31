@@ -1,66 +1,70 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
+import { useGlobalContext } from "../context/globalContext";
 import { casesTypeColors } from "../utils/helpers";
 import "./LineGraph.css";
 
-const options = {
-  legend: {
-    display: false,
-  },
-  elements: {
-    point: {
-      radius: 0,
+function LineGraph( { theme }) {
+  const { historicalCountry, caseType, countryInput } = useGlobalContext();
+  const options = {
+    legend: {
+      display: false,
     },
-  },
-  maintainAspectRatio: false,
-  tooltips: {
-    mode: "index",
-    intersect: false,
-    callbacks: {
-      label: function (tooltipItem, data) {
-        return numeral(tooltipItem.value).format("+0,0");
+    elements: {
+      point: {
+        radius: 0,
       },
     },
-  },
-  scales: {
-    xAxes: [
-      {
-        type: "time",
-        time: {
-          format: "MM/DD/YY",
-          tooltipFormat: "ll",
+    maintainAspectRatio: false,
+    tooltips: {
+      mode: "index",
+      intersect: false,
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return numeral(tooltipItem.value).format("+0,0");
         },
       },
-    ],
-    yAxes: [
-      {
-        gridLines: {
-          display: false,
-        },
-        ticks: {
-          // Include a dollar sign in the ticks
-          callback: function (value, index, values) {
-            return numeral(value).format("0a");
+    },
+    scales: {
+      xAxes: [
+        {
+          type: "time",
+          time: {
+            format: "MM/DD/YY",
+            tooltipFormat: "ll",
           },
+          ticks: {
+            fontColor: theme === 'dark' ? "white" : "black"
+          }
         },
-      },
-    ],
-  },
-};
-
-function LineGraph(props) {
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value, index, values) {
+              return numeral(value).format("0a");
+            },
+            fontColor: theme === 'dark' ? "white" : "black"
+          },
+        },],
+    },
+  };
   return (
     <div className="graph">
       
-      {props.dataChart?.length > 0 && (
+      {historicalCountry?.length > 0 && (
         <Line
           data={{
             datasets: [
               {
-                backgroundColor: `${casesTypeColors[props.caseType].half_op}`,
-                borderColor: `${casesTypeColors[props.caseType].hex}`,
-                data: props.dataChart,
+                backgroundColor: `${casesTypeColors[caseType].half_op}`,
+                borderColor: theme === 'dark' ? 'white' : 'black',
+                data: historicalCountry,
               },
             ],
           }}
@@ -68,7 +72,7 @@ function LineGraph(props) {
         />
       )}
 
-      {props.dataChart.message && <h3>No data available for this country</h3>}
+      {historicalCountry.message && <h3>No data available for this country</h3>}
     </div>
   );
 }
