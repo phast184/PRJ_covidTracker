@@ -4,6 +4,7 @@ import {
   SET_CASE_TYPE,
   SET_PROVINCE_INPUT,
   LOAD_HISTORICAL_CANADA,
+  LOAD_HISTORICAL_PROVINCES,
   SET_TYPE_INPUT
 } from "../actions/canadaActions";
 
@@ -33,6 +34,21 @@ const reducer = (state, action) => {
       return{
         ...state,
         provinceInput: action.payload
+      }
+    }
+
+    if (action.type === SET_CASE_TYPE){
+      return{
+        ...state,
+        caseType: action.payload
+      }
+    }
+
+    if (action.type === LOAD_HISTORICAL_PROVINCES){
+      
+      return{
+        ...state,
+        historicalProvince: action.payload
       }
     }
 
