@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Switch>
         <Redirect exact from="/" to="/covid" />
-        <Route path="/covid" component={GlobalCovid} />
+        <Route exact path="/covid" component={GlobalCovid} />
         <Route path = "/covid/ca" component={CanadaCovidPage} />
       </Switch>
     </Router>
