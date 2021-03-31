@@ -7,9 +7,10 @@ import {
   SET_CASE_TYPE,
   SET_PROVINCE_INPUT,
   LOAD_HISTORICAL_CANADA,
+  LOAD_HISTORICAL_PROVINCES,
   SET_TYPE_INPUT,
 } from "../actions/canadaActions";
-import {} from "../actions/canadaActions";
+import { } from "../actions/canadaActions";
 
 const initialState = {
   provinces: [],
@@ -20,8 +21,9 @@ const initialState = {
   typeInputData: [
     { type: "confirmed", name: "Confirmed Cases" },
     { type: "deaths", name: "Deaths" },
-    { type: "recovered", name: "Recovered" },
+    { type: "recovered", name: "Recovered Cases" },
   ],
+  historicalProvince: []
 };
 
 const CanadaContext = React.createContext();
@@ -44,6 +46,7 @@ export const CanadaContextProvider = ({ children }) => {
     dispatch({ type: LOAD_ALL_PROVINCES_DATA, payload: data });
   };
 
+
   //**set type input */
 
   const setTypeInput = (e) => {
@@ -53,18 +56,62 @@ export const CanadaContextProvider = ({ children }) => {
   /**Set province input for dropdown menu */
 
   const setProvinceInput = (e) => {
-    dispatch({type: SET_PROVINCE_INPUT, payload: e.target.value})
+    dispatch({ type: SET_PROVINCE_INPUT, payload: e.target.value })
+  }
+
+  /**Set case type  */
+  const setCaseType = (type) => {
+    dispatch({ type: SET_CASE_TYPE, payload: type })
   }
 
 
-  console.log(state.provinces);
+
+  useEffect(() => {
+    const fetchHistorical = async () => {
+      let url = "";
+      let chartData;
+      try {
+        if (state.provinceInput === "Canada") {
+          url = `https://disease.sh/v3/covid-19/historical/CA?lastdays=120`;
+          const data = await fetchThings(url);
+          chartData = buildChartData(data.timeline, state.caseType);
+        } else {
+          const dataSchema = {
+            cases: [],
+            deaths: [],
+            recovered: []
+          }
+          url = `https://api.opencovid.ca/timeseries`;
+          const data = await fetchThings(url);
+          dataSchema.cases = data.cases.filter(d => d.province === state.provinceInput).slice(-120);
+          dataSchema.deaths = data.mortality.filter(d=> d.province === state.provinceInput).slice(-120);
+          dataSchema.recovered = data.recovered.filter(d => d.province === state.provinceInput).slice(-120);
+          console.log(dataSchema)
+          if (data.message) {
+            chartData = data; // in case there is no available data, it will return a message
+          } else {
+            chartData = buildChartData(data.timeline, state.caseType);
+          }
+        }
+    
+        dispatch({ type: LOAD_HISTORICAL_PROVINCES, payload: chartData });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchHistorical();
+  }, [state.provinceInput, state.provinces, state.caseType]);
+
+  console.log(state.provinceInput)
+  
   useEffect(() => {
     fetchCanada();
     fetchProvinces();
   }, []);
   return (
     //to pass the state from the context Provider
-    <CanadaContext.Provider value={{ ...state, setTypeInput, setProvinceInput }}>
+    <CanadaContext.Provider value={{ ...state, setTypeInput, setProvinceInput, setCaseType }}>
       {children}
     </CanadaContext.Provider>
   );
