@@ -17,6 +17,8 @@ import Map from "../components/Map/Map";
 import LineGraph from "../components/LineGraph";
 import numeral from "numeral";
 import "leaflet/dist/leaflet.css";
+import SidebarContainer from "../components/sidebarContainer/sidebarContainer";
+
 
 function CanadaCovidPage() {
 
@@ -34,7 +36,7 @@ function CanadaCovidPage() {
   console.log(caseType)
   return (
     <div className="app">
-      <Navbar />
+      <SidebarContainer />
       <div className="container">
         <div className="app__left">
           <div className="app__header">
