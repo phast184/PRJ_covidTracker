@@ -16,7 +16,7 @@ export const buildChartData = (data, caseType) => {
   let lastDataPoint;
 
   for (let date in data.cases) {
-    if (lastDataPoint) {
+    if (lastDataPoint >= 0) {
       let newDataPoint = {
         x: date,
         y: data[caseType][date] - lastDataPoint,

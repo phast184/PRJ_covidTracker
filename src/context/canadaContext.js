@@ -64,8 +64,6 @@ export const CanadaContextProvider = ({ children }) => {
     dispatch({ type: SET_CASE_TYPE, payload: type })
   }
 
-
-
   useEffect(() => {
     const fetchHistorical = async () => {
       let url = "";
@@ -76,35 +74,25 @@ export const CanadaContextProvider = ({ children }) => {
           const data = await fetchThings(url);
           chartData = buildChartData(data.timeline, state.caseType);
         } else {
-          const dataSchema = {
-            cases: [],
-            deaths: [],
-            recovered: []
-          }
-          url = `https://api.opencovid.ca/timeseries`;
-          const data = await fetchThings(url);
-          dataSchema.cases = data.cases.filter(d => d.province === state.provinceInput).slice(-120);
-          dataSchema.deaths = data.mortality.filter(d=> d.province === state.provinceInput).slice(-120);
-          dataSchema.recovered = data.recovered.filter(d => d.province === state.provinceInput).slice(-120);
-          console.log(dataSchema)
+          url = `https://disease.sh/v3/covid-19/historical?lastdays=120`;
+          let data = await fetchThings(url);
+          const provinceInputLower = state.provinceInput.toLowerCase();
+          data = data.filter(d => d.province === provinceInputLower);
           if (data.message) {
             chartData = data; // in case there is no available data, it will return a message
           } else {
-            chartData = buildChartData(data.timeline, state.caseType);
+            chartData = buildChartData(data[0].timeline, state.caseType);
           }
         }
-    
         dispatch({ type: LOAD_HISTORICAL_PROVINCES, payload: chartData });
       } catch (error) {
         console.log(error);
       }
     };
-  
+
     fetchHistorical();
   }, [state.provinceInput, state.provinces, state.caseType]);
 
-  console.log(state.provinceInput)
-  
   useEffect(() => {
     fetchCanada();
     fetchProvinces();
