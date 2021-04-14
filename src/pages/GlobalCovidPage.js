@@ -15,15 +15,16 @@ import Map from "../components/Map/Map";
 import LineGraph from "../components/LineGraph";
 import numeral from "numeral";
 import "leaflet/dist/leaflet.css";
-import SidebarContainer from "../components/sidebarContainer/sidebarContainer";
+import SidebarContainer from "../components/sidebarContainer/sidebarContainer"
 
 function App() {
   // const [country, setCountry] = useState("worldwide");
+
+  
   const {
     country,
     countries,
     countryInput,
-    historicalCountry,
     setCountryInput,
     setCaseType,
     caseType,
@@ -31,8 +32,8 @@ function App() {
     typeInput,
     setTypeInput,
   } = useGlobalContext();
-
-  console.log(caseType)
+  console.log(countries)
+  console.log(typeInput);
   return (
     <div className="app">
       <SidebarContainer />
@@ -109,8 +110,8 @@ function App() {
                 </FormControl>
               </div>
               <Table data = {countries} typeInput = {typeInput}></Table>
-              <h4 className="graph-header"  >{countryInput} line graph</h4>
-              <LineGraph dataChart = {historicalCountry} caseType = {caseType}/>
+              <h4 className="graph-header">{countryInput} line graph</h4>
+              <LineGraph />
             </div>
           </CardContent>
         </Card>

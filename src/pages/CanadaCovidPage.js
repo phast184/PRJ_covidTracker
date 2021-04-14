@@ -11,21 +11,27 @@ import { useCanadaContext } from "../context/canadaContext";
 import "../App.css";
 import Navbar from "../components/NavBar";
 import InfoBox from "../components/InfoBox";
-import InfoBoxes from "../components/InfoBoxes"
 import Table from "../components/Table";
 import Map from "../components/Map/Map";
 import LineGraph from "../components/LineGraph";
 import numeral from "numeral";
 import "leaflet/dist/leaflet.css";
-import SidebarContainer from "../components/sidebarContainer/sidebarContainer";
-
+import SidebarContainer from "../components/sidebarContainer/sidebarContainer"
 
 function CanadaCovidPage() {
+  // const [country, setCountry] = useState("worldwide");
+  const {
+    country,
+    countries,
+    countryInput,
+    setCountryInput,
+    setCaseType,
+    caseType,
+  } = useGlobalContext();
 
   const {
     provinces,
-    historicalProvince,
-    caseType,
+    canada,
     provinceInput,
     setProvinceInput,
     typeInput,
@@ -33,7 +39,7 @@ function CanadaCovidPage() {
     setTypeInput,
   } = useCanadaContext();
 
-  console.log(caseType)
+  console.log(typeInput)
   return (
     <div className="app">
       <SidebarContainer />
@@ -59,7 +65,31 @@ function CanadaCovidPage() {
               </Select>
             </FormControl>
           </div>
-          <InfoBoxes />
+          <div className="app__stat">
+            <InfoBox
+              title="Coronavirus Cases"
+              onClick={(e) => setCaseType("cases")}
+              active={caseType === "cases"}
+              cases={numeral(country.todayCases).format("0.0a")}
+              total={numeral(country.cases).format("0.0a")}
+              isRed
+            />
+            <InfoBox
+              title="Recovered People"
+              cases={numeral(country.todayRecovered).format("0.0a")}
+              onClick={(e) => setCaseType("recovered")}
+              active={caseType === "recovered"}
+              total={numeral(country.recovered).format("0.0a")}
+            />
+            <InfoBox
+              title="Death"
+              cases={numeral(country.todayDeaths).format("0.0a")}
+              onClick={(e) => setCaseType("deaths")}
+              active={caseType === "deaths"}
+              total={numeral(country.deaths).format("0.0a")}
+              isRed
+            />
+          </div>
           <Map />
         </div>
         <Card className="app__right">
@@ -86,8 +116,8 @@ function CanadaCovidPage() {
                 </FormControl>
               </div>
               <Table data = {provinces} typeInput = {typeInput}></Table>
-              <h4 className="graph-header">{provinceInput} line graph</h4>
-              <LineGraph dataChart = {historicalProvince} caseType = {caseType}/>
+              <h4 className="graph-header">{countryInput} line graph</h4>
+              <LineGraph />
             </div>
           </CardContent>
         </Card>

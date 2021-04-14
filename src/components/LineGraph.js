@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
+import { useGlobalContext } from "../context/globalContext";
 import { casesTypeColors } from "../utils/helpers";
 import "./LineGraph.css";
 
@@ -49,18 +50,19 @@ const options = {
   },
 };
 
-function LineGraph(props) {
+function LineGraph() {
+  const { historicalCountry, caseType } = useGlobalContext();
   return (
     <div className="graph">
       
-      {props.dataChart?.length > 0 && (
+      {historicalCountry?.length > 0 && (
         <Line
           data={{
             datasets: [
               {
-                backgroundColor: `${casesTypeColors[props.caseType].half_op}`,
-                borderColor: `${casesTypeColors[props.caseType].hex}`,
-                data: props.dataChart,
+                backgroundColor: `${casesTypeColors[caseType].half_op}`,
+                borderColor: `${casesTypeColors[caseType].hex}`,
+                data: historicalCountry,
               },
             ],
           }}
@@ -68,7 +70,7 @@ function LineGraph(props) {
         />
       )}
 
-      {props.dataChart.message && <h3>No data available for this country</h3>}
+      {historicalCountry.message && <h3>No data available for this country</h3>}
     </div>
   );
 }
