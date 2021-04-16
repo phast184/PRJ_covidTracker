@@ -2,7 +2,7 @@ import React from 'react'
 import InfoBox from './InfoBox'
 import {useCanadaContext} from '../context/canadaContext'
 import numeral from "numeral"
-function InfoBoxes() {
+function InfoBoxes(theme) {
 
     const {caseType, canada, setCaseType, provinceInput} = useCanadaContext();
     let todayCases, todayDeaths, todayRecovered, totalCases, totalRecovered, totalDeaths;
@@ -14,6 +14,7 @@ function InfoBoxes() {
         totalDeaths = canada.deaths;
         totalRecovered = canada.recovered
     }
+    console.log(theme)
     return (
         <div>
             <div className="app__stat">
@@ -24,6 +25,7 @@ function InfoBoxes() {
               cases={numeral(todayCases).format("0.0a")}
               total={numeral(totalCases).format("0.0a")}
               isRed
+              theme={theme.theme}
             />
             <InfoBox
               title="Recovered People"
@@ -31,6 +33,7 @@ function InfoBoxes() {
               onClick={(e) => setCaseType("recovered")}
               active={caseType === "recovered"}
               total={numeral(totalDeaths).format("0.0a")}
+              theme={theme.theme}
             />
             <InfoBox
               title="Death"
@@ -39,6 +42,7 @@ function InfoBoxes() {
               active={caseType === "deaths"}
               total={numeral(totalRecovered).format("0.0a")}
               isRed
+              theme={theme.theme}
             />
           </div>
         </div>
