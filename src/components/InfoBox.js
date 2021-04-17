@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import "./InfoBox.css";
-function InfoBox({ title, cases, total, type, isRed, onClick, active }) {
+function InfoBox({ title, cases, total, type, isRed, onClick, active, theme }) {
    
   return (
     <Card
@@ -11,7 +11,7 @@ function InfoBox({ title, cases, total, type, isRed, onClick, active }) {
       }`}
     >
       <CardContent>
-        <Typography color="textSecondary" gutterBottom>
+        <Typography style={{color:theme === 'dark' ? "white" : "black"}} gutterBottom>
           {title}
         </Typography>
         <h2
@@ -21,7 +21,7 @@ function InfoBox({ title, cases, total, type, isRed, onClick, active }) {
         </h2>
 
         <Typography
-          color="textSecondary"
+          style={{color:theme === 'dark' ? "white" : "black"}}
           gutterBottom
           className="infoBox__total"
         >

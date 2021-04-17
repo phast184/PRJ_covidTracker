@@ -16,7 +16,7 @@ export const buildChartData = (data, caseType) => {
   let lastDataPoint;
 
   for (let date in data.cases) {
-    if (lastDataPoint >= 0) {
+    if (lastDataPoint) {
       let newDataPoint = {
         x: date,
         y: data[caseType][date] - lastDataPoint,
@@ -49,12 +49,19 @@ export const casesTypeColors = {
   },
 };
 
-export const drawCircle = (data, casesType) =>
+export const drawCircle = (data, casesType, maxCases) =>
   data.map((country) => (
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
-      color={casesTypeColors[casesType].hex}
-      fillColor={casesTypeColors[casesType].hex}
+      color={"#000000"}
+      // fillColor={casesTypeColors[casesType].hex}
+      fillColor = {
+
+        country.cases > (maxCases * .75) ? "#CC1034" : 
+        country.cases > (maxCases * .50) && (country.cases <= (maxCases * .75)) ? "#CCCC10" : 
+        country.cases > (maxCases * .25) && (country.cases <= (maxCases * .50)) ? "#29CC10" : 
+        "#10CCCC"}
+
       fillOpacity={0.4}
       radius={
         Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
