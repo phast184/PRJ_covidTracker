@@ -95,7 +95,6 @@ export const drawCircle = (data, casesType, maxCases) =>
 
 export const drawCircleCanada = (data, casesType, maxCases) =>
   data.map((province) => (
-    //console.log( Math.sqrt(province.stats[caseType]) * casesTypeColors[caseType].multiplier)
     <Circle
       center={[province.coordinates.latitude, province.coordinates.longitude]}
       color={"#000000"}

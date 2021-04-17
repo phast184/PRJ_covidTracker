@@ -4,7 +4,7 @@ import {useCanadaContext} from '../context/canadaContext'
 import numeral from "numeral"
 function InfoBoxes(theme) {
 
-    const {caseType, canada, setCaseType, provinceInput} = useCanadaContext();
+    const {caseType, canada, setCaseType, provinceInput, provinces} = useCanadaContext();
     let todayCases, todayDeaths, todayRecovered, totalCases, totalRecovered, totalDeaths;
     if (provinceInput === 'Canada'){
         todayCases = canada.todayCases;
@@ -14,12 +14,17 @@ function InfoBoxes(theme) {
         totalDeaths = canada.deaths;
         totalRecovered = canada.recovered
     }
-    console.log(theme)
+    else {
+      const tempProvince = provinces.filter(prov => prov.province === provinceInput);
+      totalCases = tempProvince[0].stats.confirmed;
+      totalDeaths = tempProvince[0].stats.deaths;
+      totalRecovered = tempProvince[0].stats.recovered;
+    }
     return (
         <div>
             <div className="app__stat">
             <InfoBox
-              title="Coronavirus Cases"
+              title="Today Coronavirus Cases"
               onClick={(e) => setCaseType("cases")}
               active={caseType === "cases"}
               cases={numeral(todayCases).format("0.0a")}
@@ -28,7 +33,7 @@ function InfoBoxes(theme) {
               theme={theme.theme}
             />
             <InfoBox
-              title="Recovered People"
+              title="Today Recovered People"
               cases={numeral(todayRecovered).format("0.0a")}
               onClick={(e) => setCaseType("recovered")}
               active={caseType === "recovered"}
@@ -36,7 +41,7 @@ function InfoBoxes(theme) {
               theme={theme.theme}
             />
             <InfoBox
-              title="Death"
+              title="Today Death"
               cases={numeral(todayDeaths).format("0.0a")}
               onClick={(e) => setCaseType("deaths")}
               active={caseType === "deaths"}
