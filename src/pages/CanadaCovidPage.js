@@ -31,6 +31,8 @@ function CanadaCovidPage() {
     typeInput,
     typeInputData,
     setTypeInput,
+    mapCenter,
+    mapZoom
   } = useCanadaContext();
 
   const GlobalStyle = createGlobalStyle`
@@ -100,7 +102,7 @@ function CanadaCovidPage() {
                   </Select>
                 </FormControl>
               </div>
-              <Map />
+              <Map mapCenter = {mapCenter} mapZoom = {mapZoom} caseType = {caseType} data = {provinces}  />
               <InfoBoxes theme={theme.mode} />
             </div>
             <Card className="app__right">

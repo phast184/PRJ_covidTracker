@@ -32,6 +32,8 @@ function App() {
     typeInputData,
     typeInput,
     setTypeInput,
+    mapCenter,
+    mapZoom
   } = useGlobalContext();
 
   const GlobalStyle = createGlobalStyle`
@@ -104,7 +106,7 @@ function App() {
                   </Select>
                 </FormControl>
               </div>
-              <Map />
+              <Map mapCenter = {mapCenter} mapZoom = {mapZoom} data = {countries} caseType = {caseType} />
               <div className="app__stat">
                 <InfoBox
                   title="Today Coronavirus Cases"

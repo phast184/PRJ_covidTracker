@@ -9,7 +9,9 @@ import {
   LOAD_HISTORICAL_CANADA,
   LOAD_HISTORICAL_PROVINCES,
   SET_TYPE_INPUT,
+  LOAD_MAP,
 } from "../actions/canadaActions";
+import _ from 'lodash';
 import { } from "../actions/canadaActions";
 
 const initialState = {
@@ -23,7 +25,12 @@ const initialState = {
     { type: "deaths", name: "Deaths" },
     { type: "recovered", name: "Recovered Cases" },
   ],
-  historicalProvince: []
+  historicalProvince: [],
+  mapCenter: {
+    lat: 60,
+    lng: -95,
+  },
+  mapZoom: 4,
 };
 
 const CanadaContext = React.createContext();
@@ -64,6 +71,10 @@ export const CanadaContextProvider = ({ children }) => {
     dispatch({ type: SET_CASE_TYPE, payload: type })
   }
 
+  const setMap = () => {
+    let tempProvince = _.filter(state.provinces ,prov => prov.province === state.provinceInput);
+    dispatch({type: LOAD_MAP, payload: tempProvince})
+  }
   useEffect(() => {
     const fetchHistorical = async () => {
       let url = "";
@@ -91,6 +102,7 @@ export const CanadaContextProvider = ({ children }) => {
     };
 
     fetchHistorical();
+    setMap();
   }, [state.provinceInput, state.provinces, state.caseType]);
 
   useEffect(() => {

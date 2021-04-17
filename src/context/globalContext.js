@@ -17,6 +17,7 @@ import {
   SET_CASE_TYPE,
   SET_TYPE_INPUT,
 } from "../actions/globalActions";
+import { LOAD_MAP } from "../actions/canadaActions";
 
 const initialState = {
   all: [],
@@ -97,6 +98,8 @@ export const GlobalContextProvider = ({ children }) => {
         console.log(error);
       }
     };
+
+  
     fetchHistorical();
   }, [state.countryInput, state.country, state.caseType]);
 

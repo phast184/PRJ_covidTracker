@@ -5,7 +5,8 @@ import {
   SET_PROVINCE_INPUT,
   LOAD_HISTORICAL_CANADA,
   LOAD_HISTORICAL_PROVINCES,
-  SET_TYPE_INPUT
+  SET_TYPE_INPUT,
+  LOAD_MAP
 } from "../actions/canadaActions";
 
 const reducer = (state, action) => {
@@ -49,6 +50,29 @@ const reducer = (state, action) => {
       return{
         ...state,
         historicalProvince: action.payload
+      }
+    }
+
+    if (action.type === LOAD_MAP) {
+      if (state.provinceInput === 'Canada') {
+        return {
+          ...state,
+          mapCenter: {
+            lat: 60,
+            lng: -95,
+          },
+          mapZoom: 4,
+        }
+      }
+      else{
+        return {
+          ...state,
+          mapCenter: {
+            lat: action.payload[0].coordinates.latitude,
+            lng: action.payload[0].coordinates.longitude
+          },
+          mapZoom: 6
+        }
       }
     }
 

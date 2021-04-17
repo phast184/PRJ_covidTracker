@@ -10,6 +10,7 @@
     "chart.js": "^2.9.4",
     "leaflet": "^1.7.1",
     "local-storage-fallback": "^4.1.2",
+    "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",

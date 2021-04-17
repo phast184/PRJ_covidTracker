@@ -1,31 +1,42 @@
 import React from "react";
 import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
-import { useGlobalContext } from "../../context/globalContext";
 import "./Map.css";
-import { drawCircle } from "../../utils/helpers";
+import { drawCircle, drawCircleCanada } from "../../utils/helpers";
+import _ from 'lodash'
 import ChangeView from "./ChangeView";
 
-function Map() {
-  const { mapCenter, mapZoom, countries, caseType } = useGlobalContext();
+function Map(props) {
 
-  function maxCases() {
+  const maxCasesCountries = () => {
     return Math.max.apply(
       Math,
-      countries.map(function (country) {
+      props.data.map((country) => {
         return country.cases;
       })
     );
   }
 
+  const maxCasesCanada = () => {
+    return Math.max.apply(
+      Math,
+      props.data.map((province) => {
+        return province.stats.confirmed;
+      })
+    );
+  }
+
+  const caseType = props.caseType === 'cases' ? 'confirmed' : props.caseType
   return (
     <div className="map">
-      <LeafletMap center={mapCenter} zoom={mapZoom}>
-        <ChangeView center={mapCenter} zoom={mapZoom} />
+      <LeafletMap center={props.mapCenter} zoom={props.mapZoom}>
+        <ChangeView center={props.mapCenter} zoom={props.mapZoom} />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         ></TileLayer>
-        {drawCircle(countries, caseType, maxCases())}
+        {
+          _.get(props.data[0], 'countryInfo') !== undefined ? drawCircle(props.data, props.caseType, maxCasesCountries()) : drawCircleCanada(props.data, caseType, maxCasesCanada())
+        }
       </LeafletMap>
     </div>
   );
