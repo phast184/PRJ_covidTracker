@@ -8,10 +8,9 @@ const NavBar = ({ theme, changeTheme, drawerClickHandler }) => {
   const [checked, setChecked] = useState(
     storage.getItem("checked") === "true" ? false : true
   );
-
   return (
     <div className="navbar">
-      <DrawerToggleButton click={drawerClickHandler} />
+      <DrawerToggleButton theme={theme} click={drawerClickHandler} />
       <div className="logo">
         <img src={logo} alt="logo" />
         <div className="name">
@@ -19,9 +18,7 @@ const NavBar = ({ theme, changeTheme, drawerClickHandler }) => {
           <h4>SAFETY MAP</h4>
         </div>
       </div>
-      <div className="login">
-        <h3>LOGIN</h3>
-      </div>
+      <div className="login"></div>
     </div>
   );
 };

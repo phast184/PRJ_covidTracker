@@ -8,9 +8,12 @@
   z-index: -1;
 }
 
+
+
 .map .leaflet-container {
   height: 100%;
   border-radius: 12px;
+  position: sticky !important;
 }
 
 .info-flag img {
