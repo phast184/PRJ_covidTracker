@@ -6,21 +6,16 @@ import "./NavBar.css";
 import { DragSwitch } from "react-dragswitch";
 import "react-dragswitch/dist/index.css";
 import storage from "local-storage-fallback";
+import DrawerToggleButton from "./DrawerToggleButton/DrawerToggleButton";
 
-const NavBar = ({ theme, changeTheme }) => {
+const NavBar = ({ theme, changeTheme, drawerClickHandler }) => {
   const [checked, setChecked] = useState(
     storage.getItem("checked") === "true" ? false : true
   );
 
   return (
     <div className="navbar">
-      <div className="hamburger">
-        <img
-          src={checked ? burgerMenuBlack : burgerMenuWhite }
-          alt="burger menu"
-          style={{ fill: "#FFFFFF" }}
-        />
-      </div>
+      <DrawerToggleButton click={drawerClickHandler} />
       <DragSwitch
         checked={checked}
         onChange={(e) => {
