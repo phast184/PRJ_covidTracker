@@ -7,10 +7,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/covid">
+        <Route exact path="/">
           <GlobalCovid />
         </Route>
-        <Route path = "/covid/ca">
+        <Route path = "/ca">
           <CanadaCovidPage />
         </Route>
       </Switch>
