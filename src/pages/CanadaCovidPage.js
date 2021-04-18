@@ -77,6 +77,7 @@ function CanadaCovidPage() {
           <div className="container">
             <div className="app__left">
               <div className="app__header">
+                <h1>Canada COVID-19 Map</h1>
                 <FormControl className="app_dropDown">
                   <Select
                     variant="outlined"

@@ -22,9 +22,9 @@ const SideDrawer = (props) => {
         <br />
         <a href="/" className="items">Login</a>
         <br />
-        <a href="/covid" className="items">Global Stat Page</a>
+        <a href="/" className="items">Global Stat Page</a>
         <br />
-        <a href="/covid/ca" className="items"> Canada Stat Page</a>
+        <a href="/ca" className="items"> Canada Stat Page</a>
         <br />
         <button className="items">Darkmode</button>
         <DragSwitch
