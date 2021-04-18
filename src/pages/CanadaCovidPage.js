@@ -9,8 +9,6 @@ import {
 import { useGlobalContext } from "../context/globalContext";
 import { useCanadaContext } from "../context/canadaContext";
 import "../App.css";
-import Navbar from "../components/NavBar";
-import InfoBox from "../components/InfoBox";
 import InfoBoxes from "../components/InfoBoxes";
 import Table from "../components/Table";
 import Map from "../components/Map/Map";
@@ -52,9 +50,6 @@ function CanadaCovidPage() {
     background-color: ${(props) =>
       props.theme.mode === "dark" ? "#333" : "#EEE"};
       color: ${(props) => (props.theme.mode === "dark" ? "white" : "black")};
-  }
-  .fa-lightbulb, .fa-lightbulb-text{
-    color: ${(props) => (props.theme.mode === "dark" ? "yellow" : "black")};
   }
   `;
 

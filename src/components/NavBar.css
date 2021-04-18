@@ -30,3 +30,9 @@ h4{
     font-weight: 400;
     height: 1.25rem;
 }
+
+@media (max-width: 940px) {
+    .name {
+        display: none;
+    }
+}
