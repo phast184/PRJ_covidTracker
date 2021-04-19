@@ -24,6 +24,7 @@ class SidebarContainer extends Component {
     return (
       <div style={{ height: "100%" }}>
         <Navbar
+          theme={this.props.theme}
           drawerClickHandler={this.drawerToggleClickHandler}
         />
         <SideDrawer

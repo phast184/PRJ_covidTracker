@@ -1,31 +1,44 @@
 .side-drawer {
-    height: 100%;
-    background: white;
-    box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 70%;
-    max-width: 400px;
-    z-index: 1;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-out;
-    overflow-x: hidden;
-    position: absolute;
-  }
-  
-  .side-drawer.open {
-    transform: translateX(0);
-  }
+  height: 100%;
+  background: white;
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70%;
+  max-width: 400px;
+  z-index: 1;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+  overflow-x: hidden;
+  position: absolute;
+}
 
-  .items{
-      font-weight: bold;
-      font-size: 20px;
-      color:inherit;
-      text-decoration:none;
-  }
+.side-drawer.open {
+  transform: translateX(0);
+}
 
-  .itemContainer{
-      padding-left: 10px;
-      padding-top: 20px;
-  }
+.items {
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.itemContainer {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.lightToggleContainer {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 20px;
+}
+
+.lightToggle{
+  padding-left: 180px;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 20px;
+}

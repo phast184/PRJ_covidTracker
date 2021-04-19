@@ -72,13 +72,12 @@ function App() {
   const changeTheme = (e) => {
     setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'});
   }
-
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
         <div className="app">
-          <SidebarContainer theme={theme} changeTheme={changeTheme} />
+          <SidebarContainer theme={theme.mode} changeTheme={changeTheme} />
           <div className="container">
             <div className="app__left">
               <div className="app__header">

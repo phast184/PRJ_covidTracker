@@ -5,6 +5,7 @@ import App from "./App";
 import { GlobalContextProvider } from "./context/globalContext";
 import { CanadaContextProvider } from "./context/canadaContext";
 import { UserProvider } from "./context/userContext";
+import {Auth0Provider} from "@auth0/auth0-react/"
 ReactDOM.render(
   <Auth0Provider
     domain="dev-q1yz-ouh.us.auth0.com"
