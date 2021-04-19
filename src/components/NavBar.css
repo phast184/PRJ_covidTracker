@@ -30,9 +30,16 @@ h4{
     font-weight: 400;
     height: 1.25rem;
 }
+    
 
+.login {
+    border: none;
+}
 @media (max-width: 940px) {
     .name {
         display: none;
+    }
+    .login{
+        visibility: hidden;
     }
 }
